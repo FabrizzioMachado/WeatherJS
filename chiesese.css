@@ -1,0 +1,116 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Pangolin', cursive;
+    box-sizing: border-box;
+}
+
+body {
+    background: rgb(27, 25, 48);
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.cercaimg {
+    width: 30px;
+    height: auto;
+}
+.card {
+    width: 100%;
+    max-width: 470px;
+    background: linear-gradient(130deg,rgb(0, 234, 255), #6c6b76); /* Background molti-colori */
+    color: #fff;
+    margin: 80px auto 0; /* Andando con la differenza di 100px verticalmente ma 0 nel lato orizontale */
+    border-radius: 15px;
+    padding: 30px 35px;
+    text-align: center;
+    height: 15vh;  
+}
+.il-clima {
+    display: none;
+}
+.cerca {
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    width: 100%;
+    z-index: 100;
+}
+.cerca input{
+    border: 0; /* Non bordere */
+    outline: 0; /* Quanlo lo clickiamo non aparesce nulla di outline */
+    border-radius: 30px;
+    color: #555;
+    background: #dffefa;
+    padding: 10px 30px;
+    height: 40px;
+    flex: 1;
+    margin-right: 16px;
+    font-size: 15px;
+    z-index: 10;
+}
+
+.cerca button {
+    border: 0; /* Non bordere */
+    outline: 0; /* Quanlo lo clickiamo non aparesce nulla di outline */
+    background: #dffefa;
+    border-radius: 50%;
+    width: 50px;
+    height: 48px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.cerca img {
+   width: 18px;
+}
+
+.weatherIcon {
+    width: 350px;
+    margin-top: -20px;
+}
+
+.tittolo {
+    margin-top: 1vh;
+    height: 18vh;
+}
+
+.il-clima h1 {
+    font-size: 80px;
+    font-weight: 500; /* Quando bold è questo */ 
+    margin-top: -19%; 
+}
+.il-clima h2 {
+    font-size: 45px;
+    font-weight: 400;   
+    margin-top: -20px;
+}
+.detagli {
+    display: flex;
+    margin-left: -30px;
+    align-items: center;
+    justify-content: space-between; /* Uno sara alla destra e l'altro alla sinistra */
+}
+/* Sono incluiti questi nel spazio tra gli elementi */
+.col { 
+    display: flex;
+    align-items: center;
+    text-align: left;
+}
+.col img {
+    margin-right: 1px;
+    width: 130px;
+}
+.umidita, .vento {
+    font-size: 24px;
+    margin-top: -10px;
+}
+
+.errore {
+    text-align: left;
+    padding: 3px 29px;
+    color: rgb(78, 76, 76);
+    display: none;
+}
+

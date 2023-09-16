@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="lang">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Everything important of the code -->
+    <meta name="Description" content="Descrizione">
+    <meta name="keywords" content="self-improvement, Self-love, thougths, Fabrizzio, Machado, Boy, Man, loneliness">
+    <meta name="author" content="Fabrizzio Machado">
+    <title>Il weather</title>
+    <link rel="stylesheet" href="chiesese.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Belanosima:wght@600&family=Pangolin&display=swap" rel="stylesheet">
+    <link rel='icon' href='.png'> <!-- My logo -->
+</head>
+
+<body>
+ <div class="card">
+    <div class="cerca">
+        <input type="text" placeholder="Scrive il nome della citta">
+        <button><img class="cercaimg" src="Cercare.png"alt="Cerca"></button>
+    </div>
+    <div class="errore">
+        Citta invalita
+    </div>
+    <div class="il-clima">
+        <img src="Cloud.png" class="weatherIcon">
+        <div class="tittolo">
+          <h1 class="tempo">00°C</h1>
+          <h2 class="citta">Citta</h2>
+        </div>
+        <div class="detagli">
+         <div class="col">
+            <img src="umidita.png">
+            <div>
+                <p class="umidita">00%</p>
+                <p>Umidita</p>
+            </div>
+         </div>
+
+         <div class="col">
+            <img src="Vento.png">
+            <div>
+                <p class="vento">00 km/h</p>
+                <p>Velo.Vento</p>
+            </div>
+         </div>
+
+        </div>
+    </div>
+ </div>
+
+
+ <script>
+    const apiCHIAVE = "ceb2feb48163f24a3e08fd2335d0f8bd"; /* Per ottenere la data del tempo */
+    const apiLURL = "https://api.openweathermap.org/data/2.5/weather?units=metric&q="; /* La conezione accorde la citta */
+
+    const cercas = document.querySelector(".cerca input"); /* questa constante fara selezionare la classe cerca ed il tag input*/
+    const cercabottone = document.querySelector(".cerca button"); /* questa constante fara selezionare la classe cerca ed il tag button*/
+    const weatherIcono = document.querySelector(".weatherIcon");
+    const altezza = document.querySelector(".card");
+
+    async function guardailtempo(citta) {
+        const risposta = await fetch((apiLURL + citta + `&appid=${apiCHIAVE}`));
+
+        if(risposta.status == 404){
+            document.querySelector(".card").style.height = "15vh";
+            document.querySelector(".errore").style.display = "block";
+            document.querySelector(".il-clima").style.display = "none";
+        }
+        else {
+            let data = await risposta.json(); 
+            
+            document.querySelector(".citta").innerHTML = data.name; /* utilizando HTML, si cambiara il valore della classe citta per il nome della citta nell'API */
+        document.querySelector(".tempo").innerHTML = Math.round(data.main.temp) + "°C"; /* utilizando HTML, si cambiara il valore della classe temperatura per nell'API. Andiamo a ridondearlo e concatenarlo col simbolo di grados celcius */
+        document.querySelector(".vento").innerHTML = data.wind.speed + " km/h"; /* utilizando HTML, si cambiara il valore della classe vento per la che è nell'API. Aggiungiamo la parola km/h con un espazio */
+        document.querySelector(".umidita").innerHTML = data.main.humidity + "%"; /* utilizando HTML, si cambiara il valore della classe umidita per la che è nell'API. Aggiungiamo il simbolo %. */
+    
+    if(data.weather[0].main == "Clouds") {
+        weatherIcono.src = "Nublato.png";
+    } 
+    else if(data.weather[0].main == "Rain") {
+        weatherIcono.src = "Piove.png";
+    } 
+    else if(data.weather[0].main == "Clear") {
+        weatherIcono.src = "Sole.png";
+    } 
+
+    document.querySelector(".il-clima").style.display = "block";
+    }
+        }
+
+    
+    cercabottone.addEventListener("click", () => {
+        guardailtempo(cercas.value); /* Una volta che clickiamo nel bottone, si aggiungera il valore che abbiamo posto nella scatola alla funzione guarda il tempo */
+    })
+    
+    cercabottone.addEventListener("click", () => {
+        altezza.style.height = "78vh";
+    });
+ </script>
+  </body>
+  </html>
